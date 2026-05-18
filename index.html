@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Pharmacy Inventory Management</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚕️</text></svg>"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="bg-circles"><span></span><span></span><span></span><span></span></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <svg class="nav-logo" viewBox="0 0 80 80" fill="none">
+      <path d="M16 52Q14 36 20 28Q28 18 40 18Q52 18 60 28Q66 36 64 52Z" fill="#a3722e"/>
+      <ellipse cx="36" cy="44" rx="18" ry="10" fill="#3a7d44" transform="rotate(-18 36 44)"/>
+      <ellipse cx="36" cy="44" rx="14" ry="7" fill="#5aaa66" transform="rotate(-18 36 44)"/>
+      <rect x="48" y="10" width="7" height="30" rx="3.5" fill="#7b5427" transform="rotate(20 48 10)"/>
+      <circle cx="62" cy="17" r="6" fill="#a3722e"/>
+      <circle cx="30" cy="20" r="3" fill="#5aaa66" opacity=".7"/>
+    </svg>
+    <div class="nav-title">Pharmacy<br/><span>Inventory Management</span></div>
+  </a>
+  <div class="nav-actions">
+    <button class="btn btn-outline" onclick="openModal('login')">Log In</button>
+    <button class="btn btn-solid" onclick="openModal('signup')">Sign Up</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span>Healthcare · Inventory · Automation</div>
+  <h1>Smart <em>Pharmacy</em><br/>Inventory <strong>Management</strong></h1>
+  <p class="hero-desc">Track drug stock levels, monitor expiry dates, receive real-time reorder alerts, manage supplier orders and dispensing records — all from one unified platform.</p>
+  <div class="hero-actions">
+    <button class="btn btn-solid" onclick="openModal('signup')">Get Started Free</button>
+    <button class="btn btn-outline" onclick="openModal('login')">Log In to Dashboard</button>
+  </div>
+</section>
+
+<!-- FEATURE CARDS -->
+<div class="features">
+  <div class="feat-card"><div class="feat-icon">💊</div><div class="feat-title">Stock Management</div><p class="feat-desc">Live tracking with low-stock warnings and barcode lookup.</p></div>
+  <div class="feat-card"><div class="feat-icon">📅</div><div class="feat-title">Expiry Alerts</div><p class="feat-desc">Automated notifications before medicines approach expiry.</p></div>
+  <div class="feat-card"><div class="feat-icon">🔁</div><div class="feat-title">Reorder System</div><p class="feat-desc">Smart reorder forms triggered when stock falls below threshold.</p></div>
+  <div class="feat-card"><div class="feat-icon">🏭</div><div class="feat-title">Supplier Orders</div><p class="feat-desc">Manage purchase orders from multiple suppliers.</p></div>
+  <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Analytics</div><p class="feat-desc">Charts and reports on dispensing trends and stock movement.</p></div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal('login')">✕</button>
+    <div class="modal-logo">
+      <svg viewBox="0 0 80 80" fill="none"><path d="M16 52Q14 36 20 28Q28 18 40 18Q52 18 60 28Q66 36 64 52Z" fill="#a3722e"/><ellipse cx="36" cy="44" rx="18" ry="10" fill="#3a7d44" transform="rotate(-18 36 44)"/><ellipse cx="36" cy="44" rx="14" ry="7" fill="#5aaa66" transform="rotate(-18 36 44)"/></svg>
+      <span class="modal-logo-title">PharmaInventory</span>
+    </div>
+    <h2>Welcome back</h2>
+    <p class="modal-sub">Don't have an account? <a onclick="switchModal('login','signup')">Sign up free</a></p>
+    <div class="form-group"><label>Username or Email<input id="loginUser" placeholder="Username or email"/></label></div>
+    <div class="form-group"><label>Password<input id="loginPass" type="password" placeholder="Password"/></label></div>
+    <a class="forgot-link" onclick="switchModal('login','forgot')">Forgot password?</a>
+    <button class="btn btn-solid form-submit" onclick="handleLogin()">Log In</button>
+    <div class="admin-hint">🔐 <span>Admin: <b>admin</b> / <b>Admin@123</b></span></div>
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div class="modal-overlay" id="signupModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal('signup')">✕</button>
+    <div class="modal-logo">
+      <svg viewBox="0 0 80 80" fill="none"><path d="M16 52Q14 36 20 28Q28 18 40 18Q52 18 60 28Q66 36 64 52Z" fill="#a3722e"/><ellipse cx="36" cy="44" rx="18" ry="10" fill="#3a7d44" transform="rotate(-18 36 44)"/><ellipse cx="36" cy="44" rx="14" ry="7" fill="#5aaa66" transform="rotate(-18 36 44)"/></svg>
+      <span class="modal-logo-title">PharmaInventory</span>
+    </div>
+    <h2>Create account</h2>
+    <p class="modal-sub">Have an account? <a onclick="switchModal('signup','login')">Log in</a></p>
+    <div class="form-row">
+      <div class="form-group"><label>First Name<input id="suFirst" placeholder="First name"/></label></div>
+      <div class="form-group"><label>Last Name<input id="suLast" placeholder="Last name"/></label></div>
+    </div>
+    <div class="form-group"><label>Username<input id="suUsername" placeholder="Choose a username"/></label></div>
+    <div class="form-group"><label>Email<input id="suEmail" type="email" placeholder="you@example.com"/></label></div>
+    <div class="form-group"><label>Phone<input id="suPhone" type="tel" placeholder="+91 XXXXX XXXXX"/></label></div>
+    <div class="form-group">
+      <label>Role
+        <select id="suRole"><option value="">Select your role</option><option>Pharmacist</option><option>Pharmacy Technician</option><option>Store Manager</option><option>Inventory Staff</option><option>Admin</option><option>Other</option></select>
+      </label>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Password<input id="suPass" type="password" placeholder="Min 8 characters"/></label></div>
+      <div class="form-group"><label>Confirm Password<input id="suConfirm" type="password" placeholder="Re-enter password"/></label></div>
+    </div>
+    <button class="btn btn-solid form-submit" onclick="handleSignup()">Create Account</button>
+  </div>
+</div>
+
+<!-- FORGOT MODAL -->
+<div class="modal-overlay" id="forgotModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal('forgot')">✕</button>
+    <div class="modal-logo">
+      <svg viewBox="0 0 80 80" fill="none"><path d="M16 52Q14 36 20 28Q28 18 40 18Q52 18 60 28Q66 36 64 52Z" fill="#a3722e"/><ellipse cx="36" cy="44" rx="18" ry="10" fill="#3a7d44" transform="rotate(-18 36 44)"/></svg>
+      <span class="modal-logo-title">PharmaInventory</span>
+    </div>
+    <h2>Reset Password</h2>
+    <p class="modal-sub" style="margin-bottom:20px">Enter your email and we'll send a reset link.</p>
+    <div class="form-group"><label>Email<input id="forgotEmail" type="email" placeholder="you@example.com"/></label></div>
+    <button class="btn btn-solid form-submit" onclick="handleForgot()">Send Reset Link</button>
+    <div style="text-align:center;margin-top:14px"><a class="forgot-link" onclick="switchModal('forgot','login')">← Back to Login</a></div>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal" style="max-width:520px;text-align:center">
+    <button class="close-btn" onclick="closeModal('admin')">✕</button>
+    <div style="font-size:3rem;margin-bottom:14px">🛡️</div>
+    <h2 style="margin-bottom:8px">Admin Dashboard</h2>
+    <p style="color:var(--text-mid);font-size:.92rem;margin-bottom:26px">Logged in as <strong>Administrator</strong> — full access to manage inventory records.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:left;margin-bottom:22px">
+      <div class="feat-card" style="cursor:pointer"><div class="feat-icon">💊</div><div class="feat-title">Manage Stock</div></div>
+      <div class="feat-card" style="cursor:pointer"><div class="feat-icon">👥</div><div class="feat-title">Manage Users</div></div>
+      <div class="feat-card" style="cursor:pointer"><div class="feat-icon">📋</div><div class="feat-title">Supplier Orders</div></div>
+      <div class="feat-card" style="cursor:pointer"><div class="feat-icon">📊</div><div class="feat-title">Analytics</div></div>
+    </div>
+    <button class="btn btn-outline" onclick="closeModal('admin')" style="width:100%">Log Out</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
